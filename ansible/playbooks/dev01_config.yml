@@ -1,0 +1,32 @@
+---
+  - name: Configuration for dev01
+    hosts: dev01
+    become: true
+
+    tasks:
+      - name: Install latest version of Nginx
+        ansible.builtin.package:
+          name: nginx 
+          state: latest 
+      
+      - name: Enable nginx and start service 
+        ansible.builtin.service:
+          name: nginx 
+          enabled: true
+          state: started
+
+      - name: Allow nginx HTTP traffic on UFW 
+        community.general.ufw:
+          state: enabled
+          rule: allow 
+          name: Nginx HTTP 
+
+      - name: copy index.html file
+        ansible.builtin.copy:
+          src: /etc/ansible/files/index.html 
+          dest: /var/www/html/index.html
+
+      - name: copy images 
+        ansible.builtin.copy:
+          src: /etc/ansible/files/images/index.jpeg
+          dest: /var/www/html/images/index.jpeg
