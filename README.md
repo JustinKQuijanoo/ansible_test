@@ -1,2 +1,2 @@
 # ansible_test
-Managing infrastructure with Ansible
+Managing infrastructure (Routers, Switches, Firewalls, Servers...) with Ansible
