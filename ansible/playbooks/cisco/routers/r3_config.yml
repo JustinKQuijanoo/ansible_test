@@ -1,0 +1,64 @@
+---
+  - name: Configure R3's interfaces and OSPFv2
+    hosts: R3
+    gather_facts: false
+    become: true
+
+    tasks:
+      - name: Enable R3's interfaces
+        cisco.ios.ios_interfaces:
+          config:
+            - name: GigabitEthernet0/0
+              description: Trunk port > ESW1
+              enabled: true 
+            - name: GigabitEthernet0/0.224
+              description: sub-int for VLAN 224 (IT)
+              enabled: true 
+            - name: GigabitEthernet1/0
+              description: Link to Sales, Marketing, Accounting
+              enabled: true 
+            - name: GigabitEthernet1/0.10
+              description: sub-int for VLAN 10 (Sales)
+              enabled: true 
+
+      - name: Assigning IP address on R3's interfaces
+        cisco.ios.ios_l3_interfaces:
+          config:
+            - name: GigabitEthernet0/0.224
+              ipv4:
+              - address: 172.16.31.228/28
+            - name: GigabitEthernet1/0.10
+              ipv4:
+              - address: 172.16.31.1/25
+          state: merged
+
+      - name: Configure OSPF 
+        cisco.ios.ios_ospfv2:
+          config:
+            processes:
+            - areas:
+              - area_id: '0'
+              network:
+              - address: 172.16.31.224
+                wildcard_bits: 0.0.0.31
+                area: '0'
+              process_id: 1
+            - areas:
+              - area_id: '1'
+              network:
+              - address: 172.16.31.0
+                wildcard_bits: 0.0.0.127
+                area: '1'  
+              process_id: 1
+          state: merged
+
+      - name: Show OSPF and interface configuration
+        ios_command: 
+          commands:
+          - show run | section ospf 
+          - show ip interface brief | exclude unassigned
+        register: output
+
+      - name: print output
+        debug:
+          var: output.stdout_lines

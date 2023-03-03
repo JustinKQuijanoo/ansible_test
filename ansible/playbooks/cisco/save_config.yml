@@ -1,0 +1,11 @@
+---
+  - name: Configure R3's interfaces and OSPFv2
+    hosts: cisco
+    gather_facts: false
+    become: true
+
+    tasks:
+
+      - name: Save running configuration to startup configuration
+        cisco.ios.ios_config:
+          save_when: always 
