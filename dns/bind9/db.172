@@ -1,0 +1,13 @@
+;
+; BIND reverse data file for hydrohomie.ca
+;
+$TTL	604800
+@	IN	SOA	dev01.hydrohomie.ca. root.hydrohomie.ca. (
+			      5		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	dev01.
+242	IN	PTR	dev01.hydrohomie.ca.
