@@ -24,10 +24,14 @@ dns01 ansible_host=172.16.31.243
 [dhcpservers]
 dhcp01 ansible_host=172.16.31.244
 
+[fileservers]
+filesrv01 ansible_host=172.16.31.245
+
 [servers:children]
 webservers
 dnsservers
 dhcpservers
+fileservers
 
 [servers:vars]
 ansible_ssh_user=quijanju
