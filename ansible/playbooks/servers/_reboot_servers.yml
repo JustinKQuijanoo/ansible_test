@@ -1,5 +1,5 @@
 ---
-  - name: Configuration for Dev01
+  - name: Playbook to reboot specified server(s)
     hosts: dnsservers
     become: true
 
