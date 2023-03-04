@@ -1,0 +1,23 @@
+---
+  - name: Configuration for Dev01
+    hosts: dnsservers
+    become: true
+
+    tasks:
+
+      - name: Prompt user to confirm action before rebooting
+        ansible.builtin.pause:
+          prompt: "{{ item }}"
+        with_items: |
+          Warning: Proceed with reboot?
+          Press ENTER to continue or CTRL + C to cancel...
+
+      - name: Notify server reboot
+        ansible.builtin.debug:
+          msg: Please allow 5 minutes for the server to reboot. Rebooting server {{ ansible_hostname }}... 
+
+      - name: Reboot server 
+        ansible.builtin.reboot:
+
+      
+          
