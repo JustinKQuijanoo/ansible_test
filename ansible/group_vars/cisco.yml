@@ -1,5 +1,5 @@
 ---
-
+# Default connectivity variables
 ansible_network_os: "ios"
 ansible_user: "hydrohomie"
 ansible_password: "waterh2o"
