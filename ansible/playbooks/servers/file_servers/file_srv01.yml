@@ -1,0 +1,10 @@
+---
+  - name: Configuration for filesrv01
+    hosts: filesrv01
+    become: true
+
+    tasks:
+      - name: Install samba package
+        ansible.builtin.package:
+          name: samba
+          state: latest
