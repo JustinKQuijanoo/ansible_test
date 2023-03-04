@@ -1,3 +1,7 @@
+# Inventory file for the devices want to manage
+#
+#
+
 [routers]
 R2 ansible_host=172.16.31.225
 R3 ansible_host=172.16.31.228
@@ -9,11 +13,11 @@ ESW2 ansible_host=172.16.31.226
 routers
 switches
 
-[cisco:vars]
-ansible_network_os=ios
-ansible_user=hydrohomie
-ansible_password=waterh2o
-ansible_connection=network_cli
+#[cisco:vars]
+#ansible_network_os=ios
+#ansible_user=hydrohomie
+#ansible_password=waterh2o
+#ansible_connection=network_cli
 
 [webservers]
 dev01 ansible_host=172.16.31.242
