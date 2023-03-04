@@ -1,0 +1,4 @@
+--- 
+# Default connectivity variables for devices under the 'servers' group
+ansible_ssh_user: "quijanju"
+ansible_ssh_pass: "secretpass"
