@@ -1,9 +1,0 @@
----
-  - name: Configuration for Dev01
-    hosts: dnsservers
-    become: true
-
-    tasks:
-      - name: Reboot server 
-        ansible.builtin.reboot:
-          
