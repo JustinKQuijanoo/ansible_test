@@ -1,0 +1,6 @@
+---
+
+ansible_network_os: "ios"
+ansible_user: "hydrohomie"
+ansible_password: "waterh2o"
+ansible_connection: "network_cli"
